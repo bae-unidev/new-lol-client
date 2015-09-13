@@ -20,16 +20,17 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1000, height: 1000});
+  mainWindow = new BrowserWindow({width: 1199, height: 720});// ,  frame: false});
 
   // and load the index.html of the app.
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow.loadUrl('file://' + __dirname + '/main.html');
   mainWindow.openDevTools();
 
   // Open the devtools.
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
+
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.

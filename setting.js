@@ -19,7 +19,7 @@ var loginQueueHosts = {
   na: 'lq.na2.lol.riotgames.com',
   euw: 'lq.eu.lol.riotgames.com',
   eune: 'lq.eun1.lol.riotgames.com',
-  kr: 'lq.kr.lol.riotgames.com',
+  kr: 'https://lq.kr.lol.riotgames.com/',
   br: 'lq.br.lol.riotgames.com',
   tr: 'lq.tr.lol.riotgames.com',
   lan: 'lq.la1.lol.riotgames.com',
@@ -33,6 +33,7 @@ var Setting = function(options) {
   if (options.region) {
 		this.host = rtmpHosts[options.region];
 		this.lqHost = loginQueueHosts[options.region];
+    this.region = options.region;
 	} else {
 		this.host = this.options.host;
 		this.lqHost = this.options.lqHost;
@@ -46,17 +47,5 @@ var Setting = function(options) {
   this.locale = 'ko_KR';
   this.clientVersion = "5.17.15_08_31_17_30";
   this.debug = true;
-  this.getIpAddress = function() {
-    /*
-    var req = httpSync.request({
-      host: "ll.leagueoflegends.com",
-      port: 80,
-      protocol: 'http',
-      path: "services/connection_info",
-      method: 'GET'
-    });
-    return JSON.parse(req.end().toString('utf-8'))["ip_address"]; */
-    return "209.133.52.232";
-  }
 }
 module.exports = Setting;

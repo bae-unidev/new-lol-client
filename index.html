@@ -1,28 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using io.js <script>document.write(process.version)</script>
-    and Electron <script>document.write(process.versions['electron'])</script>.
-  </body>
-</html>
+<html lang="ko">
+<head>
+  <title>h</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/skeleton.css">
+  <link rel="stylesheet" href="stylesheets/login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6" style="margin-top: 30%">
+        <h3 class="text-center white">League of Legend</h3>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+      <div class="col-md-offset-4 col-md-4 login-box">
+        <label for="">Username</label>
+      <input class="u-full-width" type="text" placeholder="AnniBot">
+      <label for="">Password</label>
 
-<script type="text/javascript">
-var LolClient = require('./lib/league-of-legend/client');
-var Setting = require('./setting');
+      <input class="u-full-width" type="password" placeholder="********">
+      <button class="button-primary u-full-width">Login</button>
+    </div>
+    </div>
+  </div>
 
-  var options = {
-    region: 'kr',
-    username: 'anniebot',
-    password: 'dudrms4959'
+  <script type="text/javascript">
+  var LolClient = require('./lib/league-of-legend/client');
+  var Setting = require('./setting');
+    var options = {
+      region: 'kr',
+      username: 'anniebot',
+      password: 'dudrms4959'
     };
-  var client = new LolClient(new Setting(options));
-  client.connect(function(user){ console.log(user) });
-
-  console.log();
-
-
-</script>
+    var client = new LolClient(new Setting(options));
+  /*
+    client.connect(function(c) {
+      console.log(c.getAcctId());
+      console.log(c.sendMessage("clientFacadeService", "getLoginDataPacketForUser", []).toString());
+    });
+  */
+    client.close();
+  </script>
+</body>
+</html>
