@@ -29,14 +29,24 @@ var loginQueueHosts = {
   tw: 'loginqueuetw.lol.garenanow.com'
 };
 
+var chatHosts = {
+    na: 'chat.na1.lol.riotgames.com',
+    euw: 'chat.eu.lol.riotgames.com',
+    eune: 'chat.eun1.lol.riotgames.com',
+    kr: 'chat.kr.lol.riotgames.com'
+};
+
 var Setting = function(options) {
   if (options.region) {
 		this.host = rtmpHosts[options.region];
 		this.lqHost = loginQueueHosts[options.region];
+    this.chatHost = chatHosts[options.region];
     this.region = options.region;
 	} else {
 		this.host = this.options.host;
 		this.lqHost = this.options.lqHost;
+    this.chatHost = this.options.chatHost;
+
 	}
 
 	this.port = options.port || 2099;

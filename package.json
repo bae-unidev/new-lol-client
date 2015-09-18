@@ -9,8 +9,9 @@
   "author": "bae-unidev",
   "license": "MIT",
   "dependencies": {
-    "electron-prebuilt" : "0.32.2",
-    "electron-rebuild" : "1.0.0",
-    "java" : "0.6.0"
+    "electron-prebuilt": "0.32.2",
+    "electron-rebuild": "1.0.0",
+    "java": "0.6.0",
+    "node-xmpp": "^1.0.2"
   }
 }

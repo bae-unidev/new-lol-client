@@ -15,6 +15,7 @@ var lolClient = null;
 app.on('window-all-closed', function() {
   if (lolClient) {
     lolClient.close();
+    lolClient = null;
     console.log("정상 종료되었ㅅ브니다.");
   }
   if (process.platform != 'darwin') {
@@ -71,6 +72,7 @@ app.on('ready', function() {
   mainWindow.on('closed', function() {
     if (lolClient) {
       lolClient.close();
+      lolClient = null;
       console.log("정상 종료되었ㅅ브니다.");
     }
     // Dereference the window object, usually you would store windows

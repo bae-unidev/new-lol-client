@@ -157,11 +157,15 @@ body {
 
 
 .game-select-window {
+  padding-left: 50px;
+  padding-top: 50px;
+}
+
+.game-select-window > .window {
   border: 1px solid #222B37;
   background-color: #020F1C;
-  width: 180px;
+  width: 500px;
   box-shadow: 0px 0px 7px #171E1E;
   text-align:center;
-  margin-top: 13px;
-  height: 100px;
+  height: 400px;
 }
