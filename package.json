@@ -7,5 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "bae-unidev",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "electron-prebuilt" : "0.32.2",
+    "electron-rebuild" : "1.0.0",
+    "java" : "0.6.0"
+  }
 }
