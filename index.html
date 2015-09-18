@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>h</title>
+  <title>LOL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -9,40 +9,38 @@
   <link rel="stylesheet" href="stylesheets/login.css">
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6" style="margin-top: 30%">
-        <h3 class="text-center white">League of Legend</h3>
-      </div>
-    </div>
-    <div class="row" style="margin-top: 20px">
-      <div class="col-md-offset-4 col-md-4 login-box">
-        <label for="">Username</label>
-      <input class="u-full-width" type="text" placeholder="AnniBot">
-      <label for="">Password</label>
-
-      <input class="u-full-width" type="password" placeholder="********">
-      <button class="button-primary u-full-width">Login</button>
-    </div>
-    </div>
+ <div class="row">
+  <div class="col-md-12">
+    <img src="http://bhelas.co.uk/wp-content/uploads/2015/07/league-of-legends-logo-yz7d1fn4l.png" class="img-responsive">
+   </div>
+</div>
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-offset-4 col-md-4 login-box">
+    <label for="txt-username">Username</label>
+    <input id="txt-username" class="u-full-width" type="text" placeholder="AnniBot">
+    <label for="txt-password">Password</label>
+    <input id="txt-password" class="u-full-width" type="password" placeholder="********">
+    <span>
+      <button id="btn-login" class="button-primary">Login</button>
+      <button class="button-primary">Sign Up</button>
+    </span>
   </div>
+</div>
 
-  <script type="text/javascript">
-  var LolClient = require('./lib/league-of-legend/client');
-  var Setting = require('./setting');
-    var options = {
-      region: 'kr',
-      username: 'anniebot',
-      password: 'dudrms4959'
-    };
-    var client = new LolClient(new Setting(options));
-  /*
-    client.connect(function(c) {
-      console.log(c.getAcctId());
-      console.log(c.sendMessage("clientFacadeService", "getLoginDataPacketForUser", []).toString());
+<script type="text/javascript">
+  window.$ = window.jQuery = require("./lib/jquery");
+  var ipc = require("ipc");
+  $(document).ready(function() {
+    ipc.on("client-connect-reply", function(err, acctId) {
+      if (err) { console.error(err); }
+      window.location = "main.html";
+      console.log(acctId);
     });
-  */
-    client.close();
+    $("#btn-login").click(function() {
+      ipc.send("client-connect", $("#txt-username").val(), $("#txt-password").val());
+    });
+  });
   </script>
 </body>
+
 </html>

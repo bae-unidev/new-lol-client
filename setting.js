@@ -45,7 +45,7 @@ var Setting = function(options) {
 	this.useGarena = options.useGarena || false;
 	this.garenaToken = options.garenaToken || '';
   this.locale = 'ko_KR';
-  this.clientVersion = "5.17.15_08_31_17_30";
+  this.clientVersion = "5.18.15_09_11_15_47";
   this.debug = true;
 }
 module.exports = Setting;

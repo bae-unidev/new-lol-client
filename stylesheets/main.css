@@ -1,0 +1,167 @@
+body {
+  color: #fff;
+  background-color: #000;
+}
+
+.top-header {
+  height: 80px;
+  background-color: #010101;
+}
+
+.top-header > .logo, .profile-icon {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-height: 60px;
+  display: inline;
+}
+.top-header > .nav ul {
+  margin-bottom: 0;
+  margin-top: 3px;
+ display: inline-block;
+}
+.top-header > .nav ul li {
+  display: inline;
+  text-align: center;
+  font-size: 22px;
+  color: #555;
+}
+.top-header > .nav > .menu li.active {
+  color: white;
+  text-shadow: 0 0 0.2em #00A1D3, 0 0 0.2em #00A1D3, 0 0 0.2em #00A1D3;
+  border-width: 0 0 4px 0;
+  padding-bottom: 23px;
+  border-style: solid;
+  border-color: #fff;
+}
+.top-header > .nav > .menu li:not(:first-child) {
+  margin-left: 40px;
+}
+
+.top-header > .nav {
+  margin-left: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
+
+  padding-bottom: 10px;
+  vertical-align: top;
+
+  border-image: linear-gradient(90deg, #010101 0%, #2f3f3f 50%,  #010101 100%) 15%;
+  border-width: 0 0 4px 0;
+  width: 1000px;
+   display: inline-block;
+}
+
+.profile {
+  display: inline-block;
+
+  margin-left: 150px;
+ }
+.profile p {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  color: #DDD;
+}
+.profile > .image {
+  width: 43px;
+  height: 43px;
+  border-radius: 18px;
+  border: 1px solid #00A1D3;
+}
+.profile > .name {
+  margin-left: 5px;
+  vertical-align: middle;
+  line-height: 120%;
+  display: inline-block;
+}
+.profile > .name > .status {
+  color: #57B225;
+}
+.badges {
+  margin-left: 17px;
+  display: inline-block;
+}
+.badges > ul li {
+  margin-left: 10px;
+  color: #fff !important;
+}
+.small-badge {
+  font-size: 15px !important;
+  margin-left: 3px;
+}
+.border-top-black:before  {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url('https://cdn.artstation.com/p/assets/images/images/000/966/120/large/jason-chan-captain-fortune.jpg?1437151650') ;
+  background-size: 100% auto;
+  height: 800px;
+  -webkit-filter: blur(5px);
+}
+.pick-window {
+  padding-left: 50px;
+  padding-top: 50px;
+}
+
+.pick-window > .left-team > .summoner {
+  border: 1px solid #222B37;
+  background-color: #020F1C;
+  width: 180px;
+  box-shadow: 0px 0px 7px #171E1E;
+  text-align:center;
+  margin-top: 13px;
+}
+.pick-window > .left-team > .summoner > .image {
+  display: inline-block;
+  border-width: 1px;
+  border-image: linear-gradient(120deg, #010101 0%, #00A1D3 50%,  #010101 100%) 15%;
+  border-radius: 5px;
+  width: 50px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+}
+.pick-window > .left-team > .summoner > .info {
+  margin-top: 5px;
+  margin-left: calc(180px - 25px);
+  position: absolute;
+  font-size: 13px;
+  width: 18px;
+  height: 18px;
+  background-color: #00394B;
+ }
+
+.pick-window > .left-team > .summoner > .spell {
+  display: inline-block;
+  margin-top: 5px;
+
+ }
+.pick-window > .left-team > .summoner > .spell > img {
+  width: 25px;
+  display: block;
+  border-width: 1px;
+  border-image: linear-gradient(120deg, #010101 0%, #00A1D3 50%,  #010101 100%) 15%;
+  border-radius: 5px;
+
+}
+.pick-window > .left-team > .summoner > p {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.pick-window > .left-team > .summoner > .image {
+  display: inline-block;
+}
+
+
+.game-select-window {
+  border: 1px solid #222B37;
+  background-color: #020F1C;
+  width: 180px;
+  box-shadow: 0px 0px 7px #171E1E;
+  text-align:center;
+  margin-top: 13px;
+  height: 100px;
+}
