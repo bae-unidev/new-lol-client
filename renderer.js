@@ -8,3 +8,9 @@ function getSummonerData() {
 function getAvailableQueues() {
   return ipc.sendSync("getAvailableQueues");
 }
+
+ipc.on("friend-presence", function(err, username) {
+  if (err) { console.error(err); }
+  
+  console.log(username);
+});

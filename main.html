@@ -34,7 +34,7 @@
          <ul>
            <li><a href="#" id="popoverExampleTwo"><i class="fa fa-user"></i><i class="fa fa-caret-down small-badge"></i></a></li>
            <div id="friend-box" style="display: none">
-              <div style="padding-right:0px; width: 240px; height:600px; overflow-y:scroll;"><b>Popover Example</b> 2 - Contedsadsantbr <br> <br> <br> <br> <br> <br>
+              <div id="friend-box-content" style="padding-right:0px; width: 240px; height:600px; overflow-y:scroll;"><b>Popover Example</b> 2 - Contedsadsantbr <br> <br> <br> <br> <br> <br>
                <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>dadas <br> <br> <br> <br> <br> <br> <br> <br> <br>dadas </div>
            </div>
 
@@ -165,6 +165,7 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./renderer.js"></script>
   <script type="text/javascript">
+
     getSummonerData();
     $(function(){
 
@@ -181,9 +182,7 @@
     $("#popoverExampleTwo").on('shown.bs.popover', function () {
       $('.popover').css("float", "right");
       $('.popover').css('left', '1000px')
-
       $('.popover > .arrow').css('left', '36px')
-
     })
 
 

@@ -3,9 +3,9 @@ var BrowserWindow = require('browser-window');  // Module to create native brows
 var ipc = require('ipc');
 var LolClient = require("./lib/league-of-legend/client");
 var Setting = require("./setting");
-require("./lib/league-of-legend/game-queue");
 // Report crashes to our server.
 require('crash-reporter').start();
+var XmppChatClient = require('./lib/league-of-legend/xmpp-chat');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is GCed.
@@ -39,15 +39,21 @@ app.on('ready', function() {
     var options = { region: "kr",
       username: username,
       password: password };
+      var xmppClient = new XmppChatClient(new Setting(options));
+
+      /*
     var client = new LolClient(new Setting(options));
     client.connect(function(err, c) {
       if (err) {
         event.sender.send('client-connect-reply', err, null);
         return;
       }
+
       event.sender.send('client-connect-reply', null, c.getAcctId());
       lolClient = client;
-    });
+    });*/
+
+
   });
 
   ipc.on('getSummoner', function(event, arg) {

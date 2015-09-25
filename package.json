@@ -12,6 +12,7 @@
     "electron-prebuilt": "0.32.2",
     "electron-rebuild": "1.0.0",
     "java": "0.6.0",
-    "node-xmpp": "^1.0.2"
+    "node-xmpp-client": "^1.0.0",
+    "xml2js": "^0.4.12"
   }
 }
