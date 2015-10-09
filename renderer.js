@@ -11,6 +11,5 @@ function getAvailableQueues() {
 
 ipc.on("friend-presence", function(err, username) {
   if (err) { console.error(err); }
-  
   console.log(username);
 });

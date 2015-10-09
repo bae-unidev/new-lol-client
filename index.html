@@ -17,9 +17,9 @@
 <div class="row" style="margin-top: 20px">
   <div class="col-md-offset-4 col-md-4 login-box">
     <label for="txt-username">Username</label>
-    <input id="txt-username" class="u-full-width" type="text" placeholder="AnniBot">
+    <input id="txt-username" class="u-full-width" type="text" placeholder="AnniBot" value="AnnieBot">
     <label for="txt-password">Password</label>
-    <input id="txt-password" class="u-full-width" type="password" placeholder="********">
+    <input id="txt-password" class="u-full-width" type="password" placeholder="********" value="dudrms4959">
     <span>
       <button id="btn-login" class="button-primary">Login</button>
       <button class="button-primary">Sign Up</button>
@@ -32,7 +32,7 @@
   var ipc = require("ipc");
   $(document).ready(function() {
     ipc.on("client-connect-reply", function(err, acctId) {
-      if (err) { console.error(err); }
+      if (err) { console.error(err); return; }
       window.location = "main.html";
       console.log(acctId);
     });
