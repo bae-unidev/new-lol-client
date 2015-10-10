@@ -32,13 +32,36 @@
        </div>
        <div class="badges">
          <ul>
-           <li><a href="#" id="popoverExampleTwo"><i class="fa fa-user"></i><i class="fa fa-caret-down small-badge"></i></a></li>
+           <li><a href="#" id="pop-friends"><i class="fa fa-user"></i><i class="fa fa-caret-down small-badge"></i></a></li>
            <div id="friend-box" style="display: none">
-              <div id="friend-box-content" style="padding-right:0px; width: 240px; height:600px; overflow-y:scroll;"><b>Popover Example</b> 2 - Contedsadsantbr <br> <br> <br> <br> <br> <br>
-               <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>dadas <br> <br> <br> <br> <br> <br> <br> <br> <br>dadas </div>
+              <div id="friend-box-content" style="padding-right:0px; width: 230px; height:600px; overflow-y:scroll;">
+                   <input class="chat-search" type="text" name="name" value="" placeholder="친구 검색하기">
+                 <div class="chat-user">
+                  <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" />
+                  <div class="name">
+                    <span>쓰레쉬장인김지완</span><br>
+                    <span class="status-away"><i class="fa fa-circle-o"></i> 게임 중</span>
+                  </div>
+                </div>
+
+                <div class="chat-user">
+                  <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" />
+                  <div class="name">
+                    <span>쁘띠끄띠</span><br>
+                    <span class="status-on"><i class="fa fa-circle-o"></i> 온라인</span>
+                  </div>
+                </div>
+
+              <div class="chat-user-offline">
+                <div class="name">
+                  <span>김미쟌</span>
+                  <span class="status-off"><i class="fa fa-circle-o"></i> Offline</span>
+                </div>
+              </div>
+
+            </div>
+
            </div>
-
-
            <li><i class="fa fa-exclamation-triangle"></i><i class="fa fa-caret-down small-badge"></i></li>
          </ul>
        </div>
@@ -47,7 +70,7 @@
    </div>
 
   <div class="border-top-black">
-    <div style="display: none;" class="pick-window">
+    <div  class="pick-window">
       <div class="left-team">
 
         <div class="summoner">
@@ -142,7 +165,7 @@
 
 
     <div class="game-select-window">
-      <div class="window">
+      <div style="display: none;" class="window">
         <label for="">게임 타입</label>
         <div class="list-group">
           <a href="#" class="list-group-item active">
@@ -168,22 +191,18 @@
 
     getSummonerData();
     $(function(){
+      $("#pop-friends").popover({
+          html : true,
+          content: function() {
+            return $('#friend-box').html();
+          },
+          placement: "bottom"
+      });
 
+      function initFriendsPopover() {
+        var friends = getXMPPFriends();
 
-    // Enabling Popover Example 2 - JS (hidden content and title capturing)
-    $("#popoverExampleTwo").popover({
-        html : true,
-        content: function() {
-          return $('#friend-box').html();
-        },
-        placement: "bottom"
-    });
-
-    $("#popoverExampleTwo").on('shown.bs.popover', function () {
-      $('.popover').css("float", "right");
-      $('.popover').css('left', '1000px')
-      $('.popover > .arrow').css('left', '36px')
-    })
+      }
 
 
 });

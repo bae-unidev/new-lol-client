@@ -31,13 +31,18 @@
   window.$ = window.jQuery = require("./lib/jquery");
   var ipc = require("ipc");
   $(document).ready(function() {
-    ipc.on("client-connect-reply", function(err, acctId) {
-      if (err) { console.error(err); return; }
-      window.location = "main.html";
-      console.log(acctId);
-    });
     $("#btn-login").click(function() {
       ipc.send("client-connect", $("#txt-username").val(), $("#txt-password").val());
+    });
+    ipc.on("client-connect-reply", function(err, acctId) {
+      if (err) {
+        if (err.indexOf("Wrong client version for server") != -1) {
+          // 현재 버젼은 서버와 다릅니다.
+        }
+        console.error(err); return;
+      }
+      window.location = "main.html";
+      console.log(acctId);
     });
   });
   </script>

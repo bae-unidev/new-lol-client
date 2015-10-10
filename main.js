@@ -5,6 +5,7 @@ var LolClient = require("./lib/league-of-legend/client");
 var Setting = require("./setting");
 // Report crashes to our server.
 require('crash-reporter').start();
+var xmppClient = require('./lib/league-of-legend/xmpp-chat');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is GCed.
@@ -22,15 +23,8 @@ app.on('window-all-closed', function() {
   }
 });
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
 app.on('ready', function() {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1699, height: 720});// ,  frame: false});
-
-
-
-  // and load the index.html of the app.
+  mainWindow = new BrowserWindow({width: 1150, height: 720});// ,  frame: false});
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   mainWindow.openDevTools();
 
@@ -39,6 +33,9 @@ app.on('ready', function() {
       username: username,
       password: password
     };
+    xmppClient.connect(new Setting(options));
+    event.sender.send('client-connect-reply', null, 100);
+    /*
     var client = new LolClient(new Setting(options));
     client.connect(function(err, c) {
       if (err) {
@@ -47,7 +44,7 @@ app.on('ready', function() {
       }
       event.sender.send('client-connect-reply', null, c.getAcctId());
       lolClient = client;
-    });
+    });*/
   });
 
   ipc.on('getSummoner', function(event, arg) {
@@ -57,7 +54,6 @@ app.on('ready', function() {
       event.returnValue = null;
     }
   });
-
   ipc.on('getAvailableQueues', function(event, arg) {
     if (lolClient) {
       event.returnValue = lolClient.availableQueues;
@@ -66,7 +62,9 @@ app.on('ready', function() {
     }
   });
 
-
+  ipc.on("getXMPPFriends", function(event, arg) {
+    event.returnValue = xmppClient.getAllFriends();
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
