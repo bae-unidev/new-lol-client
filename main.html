@@ -22,28 +22,22 @@
         <li>SHOP</li>
         <li>VIDEO</li>
       </ul>
+
        <div class="profile">
          <img class="image" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png"/>
          <div class="name">
            <span>존나귀엽고짱센애 <i class="fa fa-caret-down"></i></span><br>
            <span class="status"><i class="fa fa-circle-o"></i> Online</span>
          </div>
-
        </div>
-       <div class="badges">
-         <ul>
-           <li><a href="#" id="pop-friends"><i class="fa fa-user"></i><i class="fa fa-caret-down small-badge"></i></a></li>
-           <li><i class="fa fa-exclamation-triangle"></i><i class="fa fa-caret-down small-badge"></i></li>
-         </ul>
+
+       <div class="badges" id="badges">
+
        </div>
      </div>
 
    </div>
 
-   <div id="friend-box" class="friend-box">
-    <div id="friend-box-content" style="padding-right:0px; width: 230px; height:600px; overflow-y:scroll;">
-    </div>
-   </div>
 
 
   <div class="border-top-black">
@@ -161,14 +155,14 @@
   var XMPP_STATUS = require("./lib/league-of-legend/xmpp-chat").XMPP_STATUS;
   var ChatFriendBox = React.createClass({
     render: function() {
-      var offline = this.props.statusText == XMPP_STATUS.offline;
+      var isOffline = this.props.statusText == XMPP_STATUS.offline;
       return (
-        <div className={ offline ? "user-offline" : "user" }>
-          { offline ? null : <img className="icon" src={this.props.icon} /> }
+        <div className={ isOffline ? "user-offline" : "user" }>
+          { isOffline ? null : <img className="icon" src={this.props.icon} /> }
           <div className="name">
             <span>{this.props.summonerName}</span>
-            { offline ?  null : <br/> }
-            <span className={ offline ? "status-off" : "status-on" }>
+            { isOffline ?  null : <br/> }
+            <span className={ isOffline ? "status-off" : "status-on" }>
               <i className="fa fa-circle-o"></i> {this.props.statusText}
             </span>
           </div>
@@ -177,11 +171,15 @@
     }
   });
   var ChatFriendList = React.createClass({
+    handleClick : function (jid) {
+      console.log(jid);
+    },
     render : function() {
       var result = [];
       for(var i in this.props.friends) {
         result.push(<ChatFriendBox
           key={ i }
+          onDoubleClick={ this.handleClick.bind(this, i) }
           icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" }
           summonerName={ this.props.friends[i].username }
           statusText={ this.props.friends[i].status } />);
@@ -194,12 +192,47 @@
       );
     }
   });
-  ReactDOM.render(<ChatFriendList friends={ getXMPPFriends() } />, document.getElementById("friend-box-content"));
-
-  require("ipc").on("tt", function(friend) {
-    console.log(friend);
-    ReactDOM.render(<ChatFriendList friends={ getXMPPFriends() } />, document.getElementById("friend-box-content"));
+  var NavigationBadge = React.createClass({
+    getInitialState : function () {
+      return { visible : false }
+    },
+    handleToggleFriendBox : function () {
+      this.setState({
+        visible : !this.state.visible
+      });
+    },
+    render : function () {
+      return (
+        <ul>
+          <li><a onClick={ this.handleToggleFriendBox } href="#"><i className="fa fa-user"></i><i className="fa fa-caret-down small-badge"></i></a></li>
+            { this.state.visible ? <div className="friend-box">
+              <ChatFriendList friends={ getXMPPFriends() } />
+              </div> : null }
+          <li><i className="fa fa-exclamation-triangle"></i><i className="fa fa-caret-down small-badge"></i></li>
+        </ul>);
+    }
   });
+  var Profile = React.createClass({
+    render : function() {
+      return (
+        <div className="profile">
+          <img className="image" src={ this.props.icon } />
+          <div className="name">
+            <span>{ this.props.summonerName } <i className="fa fa-caret-down"></i></span><br/>
+            <span className="status"><i className="fa fa-circle-o"></i> Online</span>
+          </div>
+        </div>
+      );
+    }
+  });
+
+  var updateFriendList = function() {
+    ReactDOM.render(<NavigationBadge />, document.getElementById("badges"));
+  }
+  require("ipc").on("change-friend-status", function(friend) {
+    updateFriendList();
+  });
+  updateFriendList();
   </script>
 
   <script type="text/babel">
@@ -220,10 +253,11 @@
         );
       }
     });
+    var ChampionSelectView;
   </script>
 
 
-  <script type="text/javascript"> 
+  <script type="text/javascript">
     getSummonerData();
     console.log(getAvailableQueues());
   </script>

@@ -41,8 +41,7 @@ app.on('ready', function() {
       console.log(jid);
     });
     xmppClient.event.on("changeFriendStatus", function(friend) {
-      console.log("서버측에서 콜백텆ㅁ");
-      mainWindow.webContents.send("tt", friend);
+      mainWindow.webContents.send("change-friend-status", friend);
     });
     xmppClient.connect(new Setting(options));
 
