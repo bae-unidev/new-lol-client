@@ -215,7 +215,7 @@ body {
 }
 
 
-#friend-box-content > .chat-user {
+#friend-box-content > .chat-user-list > .user {
   background-color: #021724;
   border: 1px solid #00364A;
   margin-bottom: 1px;
@@ -225,21 +225,21 @@ body {
   width: 100%;
   cursor:pointer;
 }
-#friend-box-content > .chat-user:hover {
+#friend-box-content > .chat-user-list > .user:hover, #friend-box-content > .chat-user-list > .user-offline:hover {
   border: 1px solid #33C3F0;
   background-color: #062331;
 }
-#friend-box-content > .chat-search {
+#friend-box-content > .chat-user-list > .search {
   width: 100%;
   border-radius: 0px;
   height: 30px;
   margin-bottom: 5px;
 }
-#friend-box-content > .chat-user > .icon {
+#friend-box-content > .chat-user-list > .user > .icon {
   width: 45px;
   height: 45px;
 }
-#friend-box-content > .chat-user > .name {
+#friend-box-content > .chat-user-list > .user > .name {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", 'Nanum Gothic', Helvetica, Arial, sans-serif;
   font-size: 16px;
   margin-left: 5px;
@@ -248,7 +248,7 @@ body {
   line-height: 135%;
   display: inline-block;
 }
-#friend-box-content > .chat-user-offline {
+#friend-box-content > .chat-user-list > .user-offline {
   background-color: #021724;
   border: 1px solid #00364A;
   margin-bottom: 1px;
@@ -258,10 +258,6 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", 'Nanum Gothic', Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #CCC;
-}
-#friend-box-content > .chat-user-offline:hover {
-  border: 1px solid #33C3F0;
-  background-color: #062331;
 }
 
 .status-off {

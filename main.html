@@ -34,33 +34,8 @@
          <ul>
            <li><a href="#" id="pop-friends"><i class="fa fa-user"></i><i class="fa fa-caret-down small-badge"></i></a></li>
            <div id="friend-box" style="display: none">
-              <div id="friend-box-content" style="padding-right:0px; width: 230px; height:600px; overflow-y:scroll;">
-                   <input class="chat-search" type="text" name="name" value="" placeholder="친구 검색하기">
-                 <div class="chat-user">
-                  <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" />
-                  <div class="name">
-                    <span>쓰레쉬장인김지완</span><br>
-                    <span class="status-away"><i class="fa fa-circle-o"></i> 게임 중</span>
-                  </div>
-                </div>
-
-                <div class="chat-user">
-                  <img class="icon" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" />
-                  <div class="name">
-                    <span>쁘띠끄띠</span><br>
-                    <span class="status-on"><i class="fa fa-circle-o"></i> 온라인</span>
-                  </div>
-                </div>
-
-              <div class="chat-user-offline">
-                <div class="name">
-                  <span>김미쟌</span>
-                  <span class="status-off"><i class="fa fa-circle-o"></i> Offline</span>
-                </div>
-              </div>
-
+            <div id="friend-box-content" style="padding-right:0px; width: 230px; height:600px; overflow-y:scroll;">
             </div>
-
            </div>
            <li><i class="fa fa-exclamation-triangle"></i><i class="fa fa-caret-down small-badge"></i></li>
          </ul>
@@ -187,6 +162,56 @@
   </script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./renderer.js"></script>
+
+  <script src="node_modules/react/dist/react.js"></script>
+  <script src="node_modules/react-dom/dist/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+  <script type="text/babel">
+  var XMPP_STATUS = require("./lib/league-of-legend/xmpp-chat").XMPP_STATUS;
+  var ChatFriendBox = React.createClass({
+    render: function() {
+      var offline = this.props.statusText == XMPP_STATUS.offline;
+      return (
+        <div className={ offline ? "user-offline" : "user" }>
+          { offline ? null : <img className="icon" src={this.props.icon} /> }
+          <div className="name">
+            <span>{this.props.summonerName}</span>
+            { offline ?  null : <br/> }
+            <span className={ offline ? "status-off" : "status-on" }>
+              <i className="fa fa-circle-o"></i> {this.props.statusText}
+            </span>
+          </div>
+        </div>
+      );
+    }
+  });
+  var ChatFriendList = React.createClass({
+    render : function() {
+      var result = [];
+      for(var i in this.props.friends) {
+        result.push(<ChatFriendBox
+          key={ i }
+          icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" }
+          summonerName={ this.props.friends[i].username }
+          statusText={ this.props.friends[i].status } />);
+      }
+      return (
+        <div className="chat-user-list">
+          <input className="search" type="text" value="" placeholder="친구 검색하기" />
+          { result }
+        </div>
+      );
+    }
+  });
+
+  function updateFriendsPopover() {
+    ReactDOM.render(<ChatFriendList friends={ getXMPPFriends() } />, document.getElementById("friend-box-content"));
+  }
+  updateFriendsPopover();
+  </script>
+
+
   <script type="text/javascript">
 
     getSummonerData();
@@ -199,10 +224,6 @@
           placement: "bottom"
       });
 
-      function initFriendsPopover() {
-        var friends = getXMPPFriends();
-
-      }
 
 
 });

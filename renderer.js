@@ -12,7 +12,9 @@ function getXMPPFriends() {
   return ipc.sendSync("getXMPPFriends");
 }
 
-ipc.on("friend-presence", function(err, username) {
+
+
+ipc.on("change-friend-status", function(err, username, data) {
   if (err) { console.error(err); }
   console.log(username);
 });

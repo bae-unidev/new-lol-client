@@ -5,7 +5,8 @@ var LolClient = require("./lib/league-of-legend/client");
 var Setting = require("./setting");
 // Report crashes to our server.
 require('crash-reporter').start();
-var xmppClient = require('./lib/league-of-legend/xmpp-chat');
+var XmppChatClient = require('./lib/league-of-legend/xmpp-chat');
+var xmppClient = null;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is GCed.
@@ -33,7 +34,13 @@ app.on('ready', function() {
       username: username,
       password: password
     };
+    xmppClient = new XmppChatClient();
     xmppClient.connect(new Setting(options));
+
+    xmppClient.event.on("requestSubscribe", function(jid) {
+      console.log(jid);
+    })
+
     event.sender.send('client-connect-reply', null, 100);
     /*
     var client = new LolClient(new Setting(options));
