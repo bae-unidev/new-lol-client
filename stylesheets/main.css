@@ -258,6 +258,7 @@ body {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", 'Nanum Gothic', Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #CCC;
+  cursor:pointer;
 }
 
 .status-off {

@@ -139,10 +139,10 @@
     </div>
   </div>
   <script type="text/javascript">
-  window.$ = window.jQuery = require("./lib/jquery");
+  // window.$ = window.jQuery = require("./lib/jquery"); <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
   </script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="./renderer.js"></script>
 
   <script src="node_modules/react/dist/react.js"></script>
@@ -157,7 +157,7 @@
     render: function() {
       var isOffline = this.props.statusText == XMPP_STATUS.offline;
       return (
-        <div className={ isOffline ? "user-offline" : "user" }>
+        <div onDoubleClick={ this.props.onOpenChatWindow } className={ isOffline ? "user-offline" : "user" }>
           { isOffline ? null : <img className="icon" src={this.props.icon} /> }
           <div className="name">
             <span>{this.props.summonerName}</span>
@@ -171,7 +171,7 @@
     }
   });
   var ChatFriendList = React.createClass({
-    handleClick : function (jid) {
+    handleOpenChatWindow : function (jid) {
       console.log(jid);
     },
     render : function() {
@@ -179,14 +179,14 @@
       for(var i in this.props.friends) {
         result.push(<ChatFriendBox
           key={ i }
-          onDoubleClick={ this.handleClick.bind(this, i) }
+          onOpenChatWindow={ this.handleOpenChatWindow.bind(this, i) }
           icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" }
           summonerName={ this.props.friends[i].username }
           statusText={ this.props.friends[i].status } />);
       }
       return (
         <div className="chat-user-list">
-          <input className="search" type="text" value="" placeholder="친구 검색하기" />
+          <input className="search" type="text" placeholder="친구 검색하기" />
           { result }
         </div>
       );
