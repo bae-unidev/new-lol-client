@@ -170,8 +170,8 @@ body {
   height: 400px;
 }
 
-.popover-title { display: none; }
-.popover {
+.friend-box {
+  position: absolute;
   float: right;
   border-radius: 1px;
   border: 1px solid #222B37;
@@ -179,13 +179,12 @@ body {
   box-shadow: 0px 0px 7px #171E1E;
   color: #fff;
   max-width: 240px;
-  left: 1000px;
-}
-.popover-content {
+  left: 870px;
   padding: 3px;
-  max-width: 236px;
-
+  top: 65px;
 }
+
+
 .popover > .arrow {
   left: 36px;
 }

@@ -34,14 +34,18 @@ app.on('ready', function() {
       username: username,
       password: password
     };
-    xmppClient = new XmppChatClient();
-    xmppClient.connect(new Setting(options));
+    event.sender.send('client-connect-reply', null, 100);
 
+    xmppClient = new XmppChatClient();
     xmppClient.event.on("requestSubscribe", function(jid) {
       console.log(jid);
-    })
+    });
+    xmppClient.event.on("changeFriendStatus", function(friend) {
+      console.log("서버측에서 콜백텆ㅁ");
+      mainWindow.webContents.send("tt", friend);
+    });
+    xmppClient.connect(new Setting(options));
 
-    event.sender.send('client-connect-reply', null, 100);
     /*
     var client = new LolClient(new Setting(options));
     client.connect(function(err, c) {

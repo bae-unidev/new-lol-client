@@ -11,10 +11,3 @@ function getAvailableQueues() {
 function getXMPPFriends() {
   return ipc.sendSync("getXMPPFriends");
 }
-
-
-
-ipc.on("change-friend-status", function(err, username, data) {
-  if (err) { console.error(err); }
-  console.log(username);
-});
