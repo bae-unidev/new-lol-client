@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>h</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../stylesheets/skeleton.css">
+  <link rel="stylesheet" href="../stylesheets/chat.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="chat-window">
+
+    <div class="profile">
+
+    </div>
+    <div class="chatbox" readonly>
+      <p color="red">
+        라이엇 게임즈 직원은 고객 지원 시 절대로 사용자의 암호를 묻지 않습니다.
+      </p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+
+    </div>
+    <input type="text" name="name" class="chat-input-box" placeholder="전송할 메시지를 입력해주세요.">
+  </div>
+</body>
+
+
+  <script type="text/javascript">
+  function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+    return params;
+  }
+  var query = getQueryParams(document.location.search);
+
+  var jid = query.jid;
+
+  </script>
+</html>
