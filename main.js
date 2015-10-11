@@ -3,13 +3,8 @@ var BrowserWindow = require('browser-window');  // Module to create native brows
 var ipc = require('ipc');
 var LolClient = require("./lib/league-of-legend/client");
 var Setting = require("./setting");
-// Report crashes to our server.
 require('crash-reporter').start();
-var XmppChatClient = require('./lib/league-of-legend/xmpp-chat');
-var xmppClient = null;
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is GCed.
 var mainWindow = null;
 var lolClient = null;
 // Quit when all windows are closed.
@@ -34,18 +29,8 @@ app.on('ready', function() {
       username: username,
       password: password
     };
-    event.sender.send('client-connect-reply', null, 100);
+    // event.sender.send('client-connect-reply', null, 100);
 
-    xmppClient = new XmppChatClient();
-    xmppClient.event.on("requestSubscribe", function(jid) {
-      console.log(jid);
-    });
-    xmppClient.event.on("changeFriendStatus", function(friend) {
-      mainWindow.webContents.send("change-friend-status", friend);
-    });
-    xmppClient.connect(new Setting(options));
-
-    /*
     var client = new LolClient(new Setting(options));
     client.connect(function(err, c) {
       if (err) {
@@ -54,7 +39,16 @@ app.on('ready', function() {
       }
       event.sender.send('client-connect-reply', null, c.getAcctId());
       lolClient = client;
-    });*/
+      lolClient.xmppClient.event.on("requestSubscribe", function(jid) {
+        console.log(jid);
+      });
+      lolClient.xmppClient.event.on("changeFriendStatus", function(friend) {
+        mainWindow.webContents.send("change-friend-status", friend);
+      });
+    });
+  });
+  ipc.on("getXMPPFriends", function(event, arg) {
+    event.returnValue = lolClient.xmppClient.getAllFriends();
   });
 
   ipc.on('getSummoner', function(event, arg) {
@@ -72,9 +66,6 @@ app.on('ready', function() {
     }
   });
 
-  ipc.on("getXMPPFriends", function(event, arg) {
-    event.returnValue = xmppClient.getAllFriends();
-  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

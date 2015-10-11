@@ -41,9 +41,8 @@
 
 
   <div class="border-top-black">
-    <div  class="pick-window">
+    <div  style="display: none;"  class="pick-window">
       <div class="left-team">
-
         <div class="summoner">
           <div class="info">
             <i class="fa fa-info"></i>
@@ -122,17 +121,34 @@
 
 
     <div class="game-select-window">
-      <div style="display: none;" class="window">
-        <label for="">게임 타입</label>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">
-            Cras justo odio
-          </a>
-          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-          <a href="#" class="list-group-item">Morbi leo risus</a>
-          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-          <a href="#" class="list-group-item">Vestibulum at eros</a>
+      <div class="window">
+        <h3>PLAY</h3>
+        <div class="game-mode">
+          <label>게임 모드</label>
+          <div class="game-mode-list">
+            <a class="list-item active">클래식</a>
+            <a class="list-item">도미니언</a>
+            <a class="list-item">무작위 총력전</a>
+          </div>
         </div>
+        <div class="game-map">
+          <label>게임 맵</label>
+          <div class="game-map-list">
+            <a href="#" class="list-item active">소환사의 협곡</a>
+            <a href="#" class="list-item">뒤틀린 숲<br/>3x3</a>
+          </div>
+        </div>
+        <div class="game-type">
+          <label>게임 타입</label>
+
+          <div class="game-type-list">
+            <a href="#" class="list-item active">일반<br/>편리한 팀 구성</a>
+            <a href="#" class="list-item">일반<br/>비공개 선택</a>
+            <a href="#" class="list-item">일반<br/>교차 선택</a>
+              <a href="#" class="list-item">랭크 개인/2인전<br/>교차 선택</a>
+
+                          </div>
+          </div>
       </div>
 
 
@@ -149,6 +165,16 @@
   <script src="node_modules/react-dom/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
+  <script type="text/babel">
+    var GameSelectWindow = React.createClass({
+      render : function () {
+
+      }
+    });
+
+
+
+  </script>
   <script type="text/babel">
   // 채팅하는 부분
 
@@ -180,7 +206,7 @@
         result.push(<ChatFriendBox
           key={ i }
           onOpenChatWindow={ this.handleOpenChatWindow.bind(this, i) }
-          icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png" }
+          icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/" + this.props.friends[i].profileIcon + ".png" }
           summonerName={ this.props.friends[i].username }
           statusText={ this.props.friends[i].status } />);
       }
