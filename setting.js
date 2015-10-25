@@ -55,7 +55,7 @@ var Setting = function(options) {
 	this.useGarena = options.useGarena || false;
 	this.garenaToken = options.garenaToken || '';
   this.locale = 'ko_KR';
-  this.clientVersion = "5.19.15_09_25_18_39";
+  this.clientVersion = "5.20.15_10_12_21_58";
   this.cdnImageHost = "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/";
   this.debug = true;
 }
