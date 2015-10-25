@@ -9,17 +9,13 @@ body {
   height: 300px;
   background-color: #020C12;
 }
-.chat-window > .profile {
-  height: 60px;
-  background-color: #021728;
-}
 .chat-window > .chatbox {
   border: 1px solid #273137;
   width: 390px;
   border-radius: 0px;
   max-width: 390px;
   margin: 5px;
-  padding: 2px;
+  padding: 5px;
   height: 200px;
   font-size: 14px;
   overflow-y: scroll;
@@ -27,6 +23,7 @@ body {
 
 }
 .chat-window > .chatbox > p {
+  display: inline;
   margin: 0;
   margin-left: 5px;
   line-height: 140%;
@@ -61,4 +58,36 @@ body {
 }
 ::-webkit-scrollbar-corner {
     background-color: transparent;
+}
+.red {
+  color: #C63833;
+}
+.blue {
+  color: #33C3F0;
+}
+
+.profile {
+  height: 60px;
+  background-color: #021728;
+  max-width: 100%;
+  padding: 10px;
+ }
+.profile > .image {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #003D54;
+}
+.profile > .name {
+  margin-left: 5px;
+  margin-bottom: 0;
+  width: 130px;
+  font-size: 16px;
+  line-height: 120%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.profile > .name > .status {
+  color: #57B225;
+  font-size: 15px;
+
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>h</title>
+  <title></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
@@ -14,26 +14,26 @@
   <div class="chat-window">
 
     <div class="profile">
-
+      <img class="image" src="" alt="" />
+      <span class="name">
+        쓰레쉬장인김지완
+        <span class="status">status</span>
+      </span>
     </div>
     <div class="chatbox" readonly>
-      <p color="red">
-        라이엇 게임즈 직원은 고객 지원 시 절대로 사용자의 암호를 묻지 않습니다.
-      </p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
-      <p> [10:20] 쓰레쉬장인김지완 : 셋</p>
+      <p class="red">라이엇 게임즈 직원은 고객 지원 시 절대로 사용자의 암호를 묻지 않습니다.
+      보이스피싱과 채팅사기로 이어질 수 있습니다.
+      </p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
+      <p class="blue">[10:20] 쓰레쉬장인김지완:</p><p> 셋</p><br>
 
     </div>
     <input type="text" name="name" class="chat-input-box" placeholder="전송할 메시지를 입력해주세요.">
@@ -42,6 +42,7 @@
 
 
   <script type="text/javascript">
+  window.$ = window.jQuery = require("./lib/jquery");
   function getQueryParams(qs) {
     qs = qs.split('+').join(' ');
     var params = {},
