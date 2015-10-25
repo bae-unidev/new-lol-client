@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>h</title>
+  <title>League of Legned</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
@@ -13,36 +13,19 @@
 
 <body>
   <div class="top-header">
-    <img src="http://lolsales-kreationsedge.rhcloud.com/images/logo.png" class="logo" >
-    <div class="nav">
-      <ul class="menu">
-        <li><i class="fa fa-home"></i></li>
-        <li class="active">PLAY</li>
-        <li>GAME</li>
-        <li>SHOP</li>
-        <li>VIDEO</li>
-      </ul>
-
-       <div class="profile">
-         <img class="image" src="http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png"/>
-         <div class="name">
-           <span>존나귀엽고짱센애 <i class="fa fa-caret-down"></i></span><br>
-           <span class="status"><i class="fa fa-circle-o"></i> Online</span>
-         </div>
-       </div>
-
-       <div class="badges" id="badges">
-
-       </div>
-     </div>
-
-   </div>
-
-
+    <img src="images/logo.png" class="logo" />
+    <div id="nav">
+    </div>
+  </div>
 
   <div class="border-top-black">
+    <div class="left">
+      
+    </div>
+
     <div  style="display: none;"  class="pick-window">
       <div class="left-team">
+
         <div class="summoner">
           <div class="info">
             <i class="fa fa-info"></i>
@@ -122,7 +105,7 @@
 
     <div class="game-select-window">
       <div class="window">
-        <h3>PLAY</h3>
+        <h3>Select Game</h3>
         <div class="game-mode">
           <label>게임 모드</label>
           <div class="game-mode-list">
@@ -145,17 +128,25 @@
             <a href="#" class="list-item active">일반<br/>편리한 팀 구성</a>
             <a href="#" class="list-item">일반<br/>비공개 선택</a>
             <a href="#" class="list-item">일반<br/>교차 선택</a>
-              <a href="#" class="list-item">랭크 개인/2인전<br/>교차 선택</a>
-
-                          </div>
+            <a href="#" class="list-item">랭크 개인/2인전<br/>교차 선택</a>
           </div>
+
+        </div>
+
+        <div class="map-preview">
+          <button class="btn btn-lg"><i class="fa fa-users"></i> 파티<br/><small>2인 팀원 초대</small></button>
+          <button class="btn btn-lg"><i class="fa fa-user"></i> 개인<br/><small>자동 팀원 선택</small></button>
+        </div>
+
+
+
       </div>
 
 
     </div>
   </div>
   <script type="text/javascript">
-  // window.$ = window.jQuery = require("./lib/jquery"); <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  //  <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
   </script>
 
@@ -198,22 +189,33 @@
   });
   var ChatFriendList = React.createClass({
     handleOpenChatWindow : function (jid) {
-      console.log(jid);
+      console.log(window.open("windows/chat-window.html?jid=" + jid, null,"resizable=yes,width=400,height=325"));
     },
     render : function() {
-      var result = [];
+      var onlineFriends = [];
+      var offlineFriends = [];
       for(var i in this.props.friends) {
-        result.push(<ChatFriendBox
-          key={ i }
-          onOpenChatWindow={ this.handleOpenChatWindow.bind(this, i) }
-          icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/" + this.props.friends[i].profileIcon + ".png" }
-          summonerName={ this.props.friends[i].username }
-          statusText={ this.props.friends[i].status } />);
+        if (this.props.friends[i].status === XMPP_STATUS.offline) {
+          offlineFriends.push(<ChatFriendBox
+            key={ i }
+            onOpenChatWindow={ this.handleOpenChatWindow.bind(this, i) }
+            summonerName={ this.props.friends[i].username }
+            statusText={ this.props.friends[i].status } />);
+        } else {
+          onlineFriends.push(<ChatFriendBox
+            key={ i }
+            onOpenChatWindow={ this.handleOpenChatWindow.bind(this, i) }
+            icon={ "http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/" + this.props.friends[i].profileIcon + ".png" }
+            summonerName={ this.props.friends[i].username }
+            statusText={ this.props.friends[i].status } />);
+          }
       }
       return (
         <div className="chat-user-list">
           <input className="search" type="text" placeholder="친구 검색하기" />
-          { result }
+          { onlineFriends }
+          { offlineFriends }
+
         </div>
       );
     }
@@ -229,13 +231,15 @@
     },
     render : function () {
       return (
-        <ul>
-          <li><a onClick={ this.handleToggleFriendBox } href="#"><i className="fa fa-user"></i><i className="fa fa-caret-down small-badge"></i></a></li>
-            { this.state.visible ? <div className="friend-box">
-              <ChatFriendList friends={ getXMPPFriends() } />
-              </div> : null }
-          <li><i className="fa fa-exclamation-triangle"></i><i className="fa fa-caret-down small-badge"></i></li>
-        </ul>);
+        <div className="badges">
+          <ul>
+            <li><a onClick={ this.handleToggleFriendBox } href="#"><i className="fa fa-user"></i><i className="fa fa-caret-down small-badge"></i></a></li>
+              { this.state.visible ? <div className="friend-box">
+                <ChatFriendList friends={ getXMPPFriends() } />
+                </div> : null }
+            <li><i className="fa fa-exclamation-triangle"></i><i className="fa fa-caret-down small-badge"></i></li>
+          </ul>
+        </div>);
     }
   });
   var Profile = React.createClass({
@@ -251,9 +255,53 @@
       );
     }
   });
+  var Menu = React.createClass({
+    handleClick : function (item) {
+      console.log(item);
+      this.setState({ activeMenuItem : item.name });
+    },
+    getDefaultProps : function () {
+      return {
+        menuItems : [
+          { name : "PLAY" },
+          { name : "SHOP" },
+          { name : "GAME" },
+          { name : "VIDEO" }
+        ]
+      }
+    },
+    getInitialState : function () {
+      return { activeMenuItem : "HOME" }
+    },
+    render : function () {
+      var self = this;
+      return (
+        <ul className="menu">
+          <li><i className="fa fa-home"></i></li>
+          {
+            this.props.menuItems.map(function(menuItem) {
+              return (<li key={menuItem.name} onClick={ self.handleClick.bind(self, menuItem) } className={ self.state.activeMenuItem === menuItem.name ? "active" : null }>{ menuItem.name }</li> )
+            })
+          }
+        </ul>
+      );
+    }
+  });
+  var Navigation = React.createClass({
+    render : function () {
+      return (
+        <div className="nav">
+          <Menu />
+          <Profile summonerName={ "쓰레쉬장인김지완" } icon={"http://ddragon.leagueoflegends.com/cdn/5.18.1/img/profileicon/17.png"}/>
+          <NavigationBadge />
+        </div>
+      );
+    }
+  });
 
+  ReactDOM.render(<Navigation />, document.getElementById("nav"));
   var updateFriendList = function() {
-    ReactDOM.render(<NavigationBadge />, document.getElementById("badges"));
+    ReactDOM.render(<Navigation />, document.getElementById("nav"));
   }
   require("ipc").on("change-friend-status", function(friend) {
     updateFriendList();
@@ -279,7 +327,9 @@
         );
       }
     });
-    var ChampionSelectView;
+    var TeamPicksList; // 이거 2개
+    var ChampionSelectView; // 이거 1개
+
   </script>
 
 

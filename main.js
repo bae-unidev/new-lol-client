@@ -29,8 +29,6 @@ app.on('ready', function() {
       username: username,
       password: password
     };
-    // event.sender.send('client-connect-reply', null, 100);
-
     var client = new LolClient(new Setting(options));
     client.connect(function(err, c) {
       if (err) {
@@ -47,8 +45,13 @@ app.on('ready', function() {
       });
     });
   });
+
   ipc.on("getXMPPFriends", function(event, arg) {
-    event.returnValue = lolClient.xmppClient.getAllFriends();
+    if (lolClient && lolClient.xmppClient) {
+      event.returnValue = lolClient.xmppClient.getAllFriends();
+    } else {
+      event.returnValue = null;
+    }
   });
 
   ipc.on('getSummoner', function(event, arg) {
@@ -61,6 +64,13 @@ app.on('ready', function() {
   ipc.on('getAvailableQueues', function(event, arg) {
     if (lolClient) {
       event.returnValue = lolClient.availableQueues;
+    } else {
+      event.returnValue = null;
+    }
+  });
+  ipc.on('getStoreUrl'), function(event, arg) {
+    if (lolClient) {
+      event.returnValue = lolClient.getStoreUrl();
     } else {
       event.returnValue = null;
     }
